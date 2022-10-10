@@ -1,3 +1,4 @@
+//START Aufgabe EA1
 function loadImage(filename) {
   document.getElementById('x').style.backgroundImage="url(img/violin.png)";
   document.getElementById('y').style.backgroundImage="url(img/dog_ex.png)";
@@ -78,3 +79,5 @@ function loadImage(filename) {
     sprite2.style.backgroundPosition = new_element_width + 'px 0px';
   }, AUTO);
 }) ();
+
+//END Aufgabe EA1
