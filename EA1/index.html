@@ -1,0 +1,74 @@
+<!doctype html">
+<html lang="de">
+
+<head>
+  <title>EA1 - Interaktiv animierte Scheibe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body onload=loadImage("violin.png")>
+  <section class="section">
+    <h1 class="title">Graphical Visualisation Technologies - EA 1</h1>
+    <h2 class="subtitle">Interaktiv animierte Scheibe <br>
+      Laura Pichlmeier - 70454892</h2>
+    <p class="content"> Implementieren Sie eine sich drehende 2D-Scheibe aus Einzelbildern, welche Sie mit JavaScript laden und in einem Image-Element zeigen (nicht im Canvas). <br>
+      Die Einzelbilder sollen, ähnlich wie bei einer Sprite-Sheet-Animation ode einem Animationsfilm, so ausgetauscht und eingeblendet werden, dass visuell der Eindruck einer Rotation entsteht. <br>
+      Auf jedem Einzelbild ist ein Rotationszustand der Scheibe zu sehen. </p>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <nav class="panel is-warning">
+          <p class="panel-heading">
+            Animierte Scheibe
+          </p>
+          <div class="box">
+            <div class="container">
+              <img id="x" class="spritesheet">
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="column">
+        <nav class="panel is-warning">
+          <p class="panel-heading">Controls</p>
+          <div class="box">
+            <ul>
+              <li><b>l:</b> turn left</li>
+              <li><b>r:</b> turn right</li>
+              <li><b>a:</b> auto mode</li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <nav class="panel is-warning">
+          <p class="panel-heading">Expansion 1</p>
+          <div class="box">
+            <div class="container">
+              <img id="y" class="spritesheet2">
+            </div>
+            <p>Sprite Source: <a
+              href="https://www.gameart2d.com/cat-and-dog-free-sprites.html">Link</a>
+            </p>
+          </div>
+        </nav>
+
+      </div>
+
+    </div>
+  </section>
+  <section class="section">
+    <div class="content">
+      <p>Sofern nicht anders angegeben, wurden alle verwendeten Grafiken von mir selbst erstellt.</p>
+    </div>
+  </section>
+
+<script src="js\script.js"></script>
+</body>
