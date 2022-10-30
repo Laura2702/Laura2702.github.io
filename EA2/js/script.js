@@ -1,5 +1,6 @@
 //START Aufgabe EA2
 //Linienstärke hat in meinem Browser leider nicht funktioniert.
+//Ich habe versucht, aus Linien einen Hund zu erstellen. Mit etwas Fantasie ist dieser erkennbar, denke ich. :)
 (function () {
   var canvas = document.getElementById('canvas');
   var gl = canvas.getContext('experimental-webgl');
