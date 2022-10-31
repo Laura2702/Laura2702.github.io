@@ -98,7 +98,8 @@
               -2,5,
               -3,3,
               -4,-1,
-              -2,1
+              -2,1,
+              0,0
                 ]);
             var vbo = gl.createBuffer();
             gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
