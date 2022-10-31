@@ -109,6 +109,6 @@
             gl.enableVertexAttribArray(posAttrib);
 
             gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_STRIP, 0, 100);
+            gl.drawArrays(gl.LINE_STRIP, 0, 73);
 }) ();
 //ENDE Aufgabe EA2
