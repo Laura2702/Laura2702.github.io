@@ -1,0 +1,68 @@
+<!--- START EA4 -->
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+    <title>EA4 - Parametrisierte Flächen</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/master.css">
+  </head>
+  <body>
+    <section class="section">
+      <h1 class="title">Graphical Visualisation Technologies - EA 4 </h1>
+      <h2 class="subtitle">Parametrisierte Flächen <br> Laura Pichlmeier - 70454892</h2>
+      <p class="content">1) Erzeugen Sie zwei neue parametrisierte Flächen (die nicht im Modul vorkommen) zunächst mit Linien, <br>
+        siehe Material (dort gibt es viele Formeln die Sie verwenden können). <br>
+        2) Füllen Sie dann die Flächen und kolorieren Sie sie passend zur jeweiligen Flächenform, <br>
+        z.B. mit Farbverläufen. Die Linien sollen noch sichtbar sein, oder es besteht die Möglichkeit zwischen Linien und Füllung umzuschalten.<br>
+        3) Kreieren Sie auch eine eigene Parametrisierung für eine Fläche und kolorieren Sie diese. <br>
+        Dazu sollen Sie sich eine neue Formel ausdenken, natürlich auf der Basis der vorhandenen Formeln aufbauen (aus Module oder aus dem Material). <br>
+        Versuchen Sie Terme zu mischen und schauen Sie, ob das passiert was Sie erwarten.... <br>
+        Alternativ suchen Sie sich eine Form und versuchen Sie diese zu erzeugen, vielleicht eine Qualle oder Ihre Lampe (dieses Vorgehen ist meist schwieriger).</p>
+        <div class="columns">
+          <div class="column">
+            <nav class="panel is-warning">
+              <p class="panel-heading">Aufgabe 4 - Teil 1 und 2</p>
+              <article class="message">
+                        <div class="message-body">
+                            Es wurden die beiden Flächen
+                            <a href="http://www.3d-meier.de/tut3/Seite46.html">Pillow Shape</a> und
+                            <a href="http://www.3d-meier.de/tut3/Seite77.html">Folium</a> gewählt. Durch Klicken auf die Bezeichnungen gelangen Sie auf die Quellseiten.
+                        </div>
+                    </article>
+              <div class="box">
+                <canvas id="canvas1"></canvas>
+                <canvas id="canvas2"></canvas>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+              <nav class="panel is-warning">
+                <p class="panel-heading">Aufgabe 4 - Teil 3</p>
+                <article class="message">
+                        <div class="message-body">
+                            Die eigene Parametrisierung verwendet folgende Formel:
+                            <code>
+                                </br>var x = (Math.tanh(u) * (3.8 * Math.tanh(v))) * c;
+                                </br>var y = ((2 * -v / Math.PI - Math.cos(v))) * c;
+                                </br>var z = ((Math.cos(v) + Math.sin(v) - 1) * (1 + Math.sin(v)) * Math.log(1 - Math.PI * v / 10) + 7.5 * Math.sin(v)) * c;
+                            </code>
+                        </div>
+                    </article>
+                <div class="box">
+                  <canvas id="canvas3"></canvas>
+                </div>
+              </nav>
+          </div>
+        </div>
+    </section>
+    <script src="js/main1.js"></script>
+    <script src="js/main2.js"></script>
+    <script src="js/main3.js"></script>
+  </body>
+</html>
+<!--- END EA4 -->
