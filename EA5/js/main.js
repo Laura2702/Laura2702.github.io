@@ -260,6 +260,7 @@ var app = ( function() {
 						camlr = 0;
 						camera.eye[1] = 1;
 						camera.zAngle = 0;
+						camera.distance = 3.5;
 				//case('+'):
 						//recursion.rek += 1;
 						//location.reload();
