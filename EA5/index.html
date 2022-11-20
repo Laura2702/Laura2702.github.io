@@ -1,0 +1,105 @@
+<!--- EA5 START --->
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<title>EA5 - Kamerabewegung</title>
+		<meta charset="utf-8">
+    <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+		<link rel="stylesheet" href="css/bulma.css">
+		<script src="ext/gl-matrix.js"></script>
+		<script src="js/Src_torus.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/Src_plane.js"></script>
+		<script src="js/Src_ball.js"></script>
+		<!--- <script src="GVT_Src_vertexData_rekursion.js"></script> --->
+		<script type="x-shader/x-vertex" id="vertexshader">
+			attribute vec3 aPosition;
+			attribute vec3 aNormal;
+
+			uniform mat4 uPMatrix;
+			uniform mat4 uMVMatrix;
+
+			varying vec4 vColor;
+
+			void main(){
+				gl_Position = uPMatrix * uMVMatrix * vec4(aPosition, 1.0);
+
+				vColor = vec4(aNormal.x, aNormal.y, aNormal.z, 1.0);
+				vColor = (vColor + 1.0) / 2.0;
+			}
+		</script>
+		<script type="x-shader/x-fragment" id="fragmentshader">
+			precision mediump float;
+			varying vec4 vColor;
+
+			void main() {
+				gl_FragColor = vColor;
+			}
+		</script>
+	</head>
+    <body onload="app.start()">
+      <section class="section">
+        <h1 class="title">Graphical Visualisation Technologies - EA 5 </h1>
+        <h2 class="subtitle">Kamerabewegung <br> Laura Pichlmeier - 70454892</h2>
+        <p class="content">Teil 1: Erstellen Sie eine Szene aus mindestens zwei Grundkörpern oder parametrisierten Flächen. <br>
+  													Sie soll interaktiv von allen Seiten einsehbar sein, siehe Interaktion. <br>
+  													Teil 2: Erstellen Sie ein rekursives Kugel-Modell, wie in Lerneinheit GRU beschrieben. <br>
+  													Die Tiefe der Rekursion soll direkt von der Webseite aus interaktiv einstellbar sein. <br>
+  													Es hilft zunächst einen Oktaeder zu bauen und auf diesen aufbauend die Dreiecksteilung vorzunehmen. <br>
+  													Kolorieren Sie das Modell. Die Linien dabei sollen zusätzlich sichtbar sein, oder es besteht die Möglichkeit zwischen Linien und Füllung umzuschalten. <br>
+  													Sie können die Kugel in die Szene aus Teil 1 der Aufgabe integrieren.</p>
+        <div class="columns">
+          <div class="column">
+            <nav class="panel is-warning">
+              <p class="panel-heading">Aufgabe 5</p>
+            </nav>
+						<article class="message">
+							<div class="message-body">
+	              <p><b>Disclaimer: </b> Da ich den 2. Aufgabenteil, das rekursive Kugelmodel, auch nach mehrstündigem Probieren nicht gelöst bekommen habe, <br>
+								habe ich mich dazu entschieden, diesen Teil wegzulassen. Tut mir leid!</p>
+	            </div>
+						</article>
+          </div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<div class="box">
+								<canvas id="canvas" width="800" height="800"></canvas>
+						</div>
+
+					</div>
+        <div class="column is-one-half">
+          <nav class="panel is-warning">
+            <p class="panel-heading">Controls: </p>
+            <div>
+              <ul>
+                <li><b>Arrow Keys: </b> Rotate left/right</li>
+                <li><b>W: </b> Move camera up</li>
+                <li><b>A: </b> Move camera left</li>
+                <li><b>S: </b> Move camera down</li>
+                <li><b>D: </b> Move camera right</li>
+                <li><b>N (Shift-N): </b> Increase (Decrease) Distance</li>
+                <li><b>R: </b> Reset Canvas</li>
+                <!--- <li><b>+: </b> Increase Recursiondepth</li> --->
+                <!--- <li><b>-: </b> Decrease Recursiondepth</li> --->
+              </ul>
+              <p><br> <b>Additional Controls: </b></p>
+              <ul>
+                <li><b>V: </b> Camera fovy in radian</li>
+                <li><b>B: </b> Camera near plane dimensions</li>
+                <li><b>O: </b> Switch to Ortho view</li>
+                <li><b>F: </b> Switch to Frustum view</li>
+                <li><b>P: </b> Switch to Perspective view</li>
+
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+
+				</div>
+      </section>
+
+    </body>
+</html>
+<!--- EA5 ENDE --->
