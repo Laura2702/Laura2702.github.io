@@ -1,3 +1,4 @@
+//EA5 START
 var app = ( function() {
 
 	var gl;
@@ -378,3 +379,4 @@ var app = ( function() {
 	}
 
 }());
+//EA5 ENDE

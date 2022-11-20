@@ -1,3 +1,4 @@
+//EA5 START
 var ball = ( function() {
 
 
@@ -82,3 +83,4 @@ var ball = ( function() {
 	}
 
 }());
+//EA5 ENDE

@@ -1,3 +1,4 @@
+//EA5 START
 var torus = ( function() {
 
 	function createVertexData() {
@@ -84,3 +85,4 @@ var torus = ( function() {
 	}
 
 }());
+//EA5 ENDE
