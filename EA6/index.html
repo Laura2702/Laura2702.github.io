@@ -1,0 +1,47 @@
+<!--- START EA6 --->
+<!DOCTYPE html>
+<html lang="de"
+
+<head>
+  <title>EA6 - Objekte bewegen - fliegende Kugeln</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+  <link rel="stylesheet" href="css/bulma.css">
+</head>
+
+<body onload="app.start()">
+  <section class="section">
+    <h1 class="title">Graphical Visualisation Technologies - EA 6 </h1>
+    <h2 class="subtitle">Objekte bewegen - fliegende Kugeln <br> Laura Pichlmeier - 70454892</h2>
+    <p class="content">Lassen Sie die vier Kugeln aus dem Beispielprogramm aus der Lerneinheit TFM interaktiv durch den Torus fliegen. <br>
+      Dabei bewegen sich die Kugeln kontinuierlich auf Kreisbahnen so, dass sie sich nie berühren. <br>
+      Der Torus dreht sich um eine seiner Achsen (aber nicht nur wie ein Autoreifen), <br>
+      ohne dass er von den Kugeln berührt wird. Beide Bewegungen werden synchron animiert. </p>
+    <div class="columns">
+      <div class="column">
+        <nav class="panel is-warning">
+          <p class="panel-heading">Aufgabe 6 + Erweiterung</p>
+          <article class="message">
+              <div class="message-body">
+                  K = Animation anhalten/starten</br>
+              </div>
+          </article>
+          <div class="box">
+              <canvas id="canvas"></canvas>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/Model_plane.js"></script>
+  <script src="js/Model_sphere.js"></script>
+  <script src="js/Model_torus.js"></script>
+  <script src="ext/gl-matrix.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/framework.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/vertexshader.js"></script>
+  <script src="js/fragmentshader.js"></script>
+</body>
+<!--- END EA6 --->
