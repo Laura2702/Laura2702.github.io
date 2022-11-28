@@ -4,13 +4,14 @@ const vec3 = glMatrix.vec3;
 
 window.onload = () => {
     {
-        var playAnimation = true;
-        var current_t = 0;
+
+        var current_pos = 0;
+        var animation = true;
 
         document.addEventListener('keydown', function(e) {
             switch(e.key) {
                 case 'k':
-                    playAnimation = !playAnimation;
+                    animation = !animation;
                     break;
             }
         });
@@ -18,86 +19,91 @@ window.onload = () => {
         const app = new App(document.getElementById('canvas'));
         app.background_color = [1.0, 1.0, 1.0, 1.0];
 
-        app.camera.position = vec3.fromValues(0, -100, 0);
+        app.camera.translate = vec3.fromValues(0, -100, 0);
         app.camera.target = vec3.fromValues(0, 0, 0);
 
         app.on_update = (dt, t) => {
-            if (playAnimation) {
-                current_t += dt;
+            if (animation) {
+                current_pos += dt;
             }
 
-            torus.rotation = vec3.fromValues(90, 0, -100*current_t % 360 + 45);
+                        sphere1.translate = glMatrix.vec3.fromValues(0, Math.cos(current_pos) * 10, Math.sin(current_pos) * -10 - 10);
+            sphere2.translate = glMatrix.vec3.fromValues(Math.sin(current_pos) * 10, Math.cos(current_pos) * 10 + 10, Math.sin(current_pos) * 10);
+            sphere3.translate = glMatrix.vec3.fromValues(Math.cos(current_pos) * -10, Math.sin(current_pos) * 10 + 10, Math.cos(current_pos) * 10);
+            sphere4.translate = glMatrix.vec3.fromValues(0, Math.sin(current_pos) * 10, Math.cos(current_pos) * 10 + 10);
 
-            sphere1.position = glMatrix.vec3.fromValues(0, Math.cos(current_t) * 10, Math.sin(current_t) * -10 - 10);
-            sphere2.position = glMatrix.vec3.fromValues(Math.sin(current_t) * 10, Math.cos(current_t) * 10 + 10, Math.sin(current_t) * 10);
-            sphere3.position = glMatrix.vec3.fromValues(Math.cos(current_t) * -10, Math.sin(current_t) * 10 + 10, Math.cos(current_t) * 10);
-            sphere4.position = glMatrix.vec3.fromValues(0, Math.sin(current_t) * 10, Math.cos(current_t) * 10 + 10);
+            torus.rotation = vec3.fromValues(90, 0, -100*current_pos % 360 + 45);
         };
 
-        var torus = new Model(VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
-        app.add_model(torus);
-
-        {
-            var torus_data = torus_createVertexData();
-            torus.indices = torus_data["indicesTriangles"];
-            torus.vertex_normals = torus_data["normals"];
-            torus.vertex_positions = torus_data["vertices"];
-            torus.vertex_colors = FILL_COLOR(torus_data["vertices"].length, [1.0, 1.0, 1.0, 1.0]);
-        };
-        torus.position = vec3.fromValues(0, 0, 0);
-        torus.scale = vec3.fromValues(10, 10, 3);
-
-        var sphere1 = new Model(VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+        var sphere1 = new Model(VERTEXSHADER, FRAGMENTSHADER);
         app.add_model(sphere1);
 
         {
-            var sphere_data = sphere_createVertexData();
-            sphere1.indices = sphere_data["indicesTriangles"];
-            sphere1.vertex_normals = sphere_data["normals"];
-            sphere1.vertex_positions = sphere_data["vertices"];
-            sphere1.vertex_colors = FILL_COLOR(sphere_data["vertices"].length, [0.0, 0.0, 1.0, 1.0]);
+          //blau
+            var sphereData = sphere_createVertexData();
+            sphere1.indices = sphereData["indicesTriangles"];
+            sphere1.vnormals = sphereData["normals"];
+            sphere1.vpositions = sphereData["vertices"];
+            sphere1.vcolors = FILL_COLOR(sphereData["vertices"].length, [0.0, 0.0, 1.0, 1.0]);
         };
-        sphere1.position = vec3.fromValues(0, 2, 0);
+        sphere1.translate = vec3.fromValues(0, 2, 0);
         sphere1.scale = vec3.fromValues(1.5, 1.5, 1.5);
 
-        var sphere2 = new Model(VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+        var sphere2 = new Model(VERTEXSHADER, FRAGMENTSHADER);
         app.add_model(sphere2);
 
         {
-            var sphere_data = sphere_createVertexData();
-            sphere2.indices = sphere_data["indicesTriangles"];
-            sphere2.vertex_normals = sphere_data["normals"];
-            sphere2.vertex_positions = sphere_data["vertices"];
-            sphere2.vertex_colors = FILL_COLOR(sphere_data["vertices"].length, [1.0, 0.0, 1.0, 1.0]);
+          //pink
+            var sphereData = sphere_createVertexData();
+            sphere2.indices = sphereData["indicesTriangles"];
+            sphere2.vnormals = sphereData["normals"];
+            sphere2.vpositions = sphereData["vertices"];
+            sphere2.vcolors = FILL_COLOR(sphereData["vertices"].length, [1.0, 0.0, 1.0, 1.0]);
         };
-        sphere2.position = vec3.fromValues(0, -3, 0);
+        sphere2.translate = vec3.fromValues(0, -3, 0);
         sphere2.scale = vec3.fromValues(1.5, 1.5, 1.5);
 
-        var sphere3 = new Model(VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+        var sphere3 = new Model(VERTEXSHADER, FRAGMENTSHADER);
         app.add_model(sphere3);
 
         {
-            var sphere_data = sphere_createVertexData();
-            sphere3.indices = sphere_data["indicesTriangles"];
-            sphere3.vertex_normals = sphere_data["normals"];
-            sphere3.vertex_positions = sphere_data["vertices"];
-            sphere3.vertex_colors = FILL_COLOR(sphere_data["vertices"].length, [1.0, 1.0, 0.0, 1.0]);
+          //gelb
+            var sphereData = sphere_createVertexData();
+            sphere3.indices = sphereData["indicesTriangles"];
+            sphere3.vnormals = sphereData["normals"];
+            sphere3.vpositions = sphereData["vertices"];
+            sphere3.vcolors = FILL_COLOR(sphereData["vertices"].length, [1.0, 1.0, 0.0, 1.0]);
         };
-        sphere3.position = vec3.fromValues(0, 0, 3);
+        sphere3.translate = vec3.fromValues(0, 0, 3);
         sphere3.scale = vec3.fromValues(1.5, 1.5, 1.5);
 
-        var sphere4 = new Model(VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+        var sphere4 = new Model(VERTEXSHADER, FRAGMENTSHADER);
         app.add_model(sphere4);
 
         {
-            var sphere_data = sphere_createVertexData();
-            sphere4.indices = sphere_data["indicesTriangles"];
-            sphere4.vertex_normals = sphere_data["normals"];
-            sphere4.vertex_positions = sphere_data["vertices"];
-            sphere4.vertex_colors = FILL_COLOR(sphere_data["vertices"].length, [0.0, 1.0, 1.0, 1.0]);
+          //türkis
+            var sphereData = sphere_createVertexData();
+            sphere4.indices = sphereData["indicesTriangles"];
+            sphere4.vnormals = sphereData["normals"];
+            sphere4.vpositions = sphereData["vertices"];
+            sphere4.vcolors = FILL_COLOR(sphereData["vertices"].length, [0.0, 1.0, 1.0, 1.0]);
         };
-        sphere4.position = vec3.fromValues(0, 0, -3);
+        sphere4.translate = vec3.fromValues(0, 0, -3);
         sphere4.scale = vec3.fromValues(1.5, 1.5, 1.5);
+
+
+        var torus = new Model(VERTEXSHADER, FRAGMENTSHADER);
+        app.add_model(torus);
+
+        {
+            var torusData = torus_createVertexData();
+            torus.indices = torusData["indicesTriangles"];
+            torus.vnormals = torusData["normals"];
+            torus.vpositions = torusData["vertices"];
+            torus.vcolors = FILL_COLOR(torusData["vertices"].length, [1.0, 1.0, 1.0, 1.0]);
+        };
+        torus.translate = vec3.fromValues(0, 0, 0);
+        torus.scale = vec3.fromValues(10, 10, 3);
 
         app.run();
     }

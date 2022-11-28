@@ -1,5 +1,5 @@
 //START EA6
-const VERTEX_SHADER_SOURCE = `
+const VERTEXSHADER = `
   attribute vec3 coordinates;
   attribute vec3 normals;
 

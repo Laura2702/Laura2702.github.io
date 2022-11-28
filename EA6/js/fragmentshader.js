@@ -1,5 +1,5 @@
 //START EA6
-const FRAGMENT_SHADER_SOURCE = `
+const FRAGMENTSHADER = `
   precision highp float;
 
   varying vec4 vColor;

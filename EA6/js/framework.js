@@ -3,19 +3,18 @@ class Model {
     constructor(vs_src, fs_src) {
         this._vs_src = vs_src;
         this._fs_src = fs_src;
-        this.on_update = (dt, t) => { };
-
-        this._position = glMatrix.vec3.create();
+        this._translate = glMatrix.vec3.create();
         this._rotation = glMatrix.vec3.create();
         this._scale = glMatrix.vec3.fromValues(1.0, 1.0, 1.0);
 
         this._model_matrix = glMatrix.mat4.create();
 
         this._render_mode = "TRIANGLES";
+        this.on_update = (dt, t) => { };
     }
 
-    set position(vec3) {
-        this._position = vec3;
+    set translate(vec3) {
+        this._translate = vec3;
     }
 
     set rotation(vec3_deg) {
@@ -33,19 +32,19 @@ class Model {
         this._ibo.numberOfElements = data.length;
     }
 
-    set vertex_positions(data) {
+    set vpositions(data) {
         this._GL_CONTEXT.bindBuffer(this._GL_CONTEXT.ARRAY_BUFFER, this._vbo_pos);
         this._GL_CONTEXT.bufferData(this._GL_CONTEXT.ARRAY_BUFFER, data, this._GL_CONTEXT.STATIC_DRAW);
         this._GL_CONTEXT.vertexAttribPointer(this._coord_attr, 3, this._GL_CONTEXT.FLOAT, false, 0, 0);
     }
 
-    set vertex_colors(data) {
+    set vcolors(data) {
         this._GL_CONTEXT.bindBuffer(this._GL_CONTEXT.ARRAY_BUFFER, this._vbo_col);
         this._GL_CONTEXT.bufferData(this._GL_CONTEXT.ARRAY_BUFFER, data, this._GL_CONTEXT.STATIC_DRAW);
         this._GL_CONTEXT.vertexAttribPointer(this._color_attr, 4, this._GL_CONTEXT.FLOAT, false, 0, 0);
     }
 
-    set vertex_normals(data) {
+    set vnormals(data) {
         this._GL_CONTEXT.bindBuffer(this._GL_CONTEXT.ARRAY_BUFFER, this._vbo_norm);
         this._GL_CONTEXT.bufferData(this._GL_CONTEXT.ARRAY_BUFFER, data, this._GL_CONTEXT.STATIC_DRAW);
         this._GL_CONTEXT.vertexAttribPointer(this._color_attr, 3, this._GL_CONTEXT.FLOAT, false, 0, 0);
@@ -82,22 +81,13 @@ class Model {
         this._GL_CONTEXT.attachShader(this._shader_program, this._fragment_shader);
         this._GL_CONTEXT.linkProgram(this._shader_program);
 
-        this._coord_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "coordinates");
-        this._norm_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "normals");
-        this._color_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "color");
-
         this._projmatrix_attr = this._GL_CONTEXT.getUniformLocation(this._shader_program, "projmatrix");
         this._viewmatrix_attr = this._GL_CONTEXT.getUniformLocation(this._shader_program, "viewmatrix");
         this._modelmatrix_attr = this._GL_CONTEXT.getUniformLocation(this._shader_program, "modelmatrix");
-    }
 
-    update(dt, t) {
-
-        var quat = glMatrix.quat.create();
-        glMatrix.quat.fromEuler(quat, this._rotation[0], this._rotation[1], this._rotation[2]);
-        this._model_matrix = glMatrix.mat4.fromRotationTranslationScale(this._model_matrix, quat, this._position, this._scale);
-
-        this.on_update(dt, t);
+        this._coord_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "coordinates");
+        this._norm_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "normals");
+        this._color_attr = this._GL_CONTEXT.getAttribLocation(this._shader_program, "color");
     }
 
     render(projection_matrix, view_matrix) {
@@ -126,6 +116,16 @@ class Model {
         if (this._render_mode == "TRIANGLES")
             this._GL_CONTEXT.drawElements(this._GL_CONTEXT.TRIANGLES, this._ibo.numberOfElements, this._GL_CONTEXT.UNSIGNED_SHORT, 0);
     }
+
+
+    update(dt, t) {
+
+        var quat = glMatrix.quat.create();
+        glMatrix.quat.fromEuler(quat, this._rotation[0], this._rotation[1], this._rotation[2]);
+        this._model_matrix = glMatrix.mat4.fromRotationTranslationScale(this._model_matrix, quat, this._translate, this._scale);
+
+        this.on_update(dt, t);
+    }
 };
 
 class Camera {
@@ -135,15 +135,15 @@ class Camera {
         this._zmin = 0.1;
         this._zmax = 999;
 
-        this._position = glMatrix.vec3.create();
+        this._translate = glMatrix.vec3.create();
         this._target = glMatrix.vec3.create();
 
         this._projection_matrix = glMatrix.mat4.create();
         this._view_matrix = glMatrix.mat4.create();
     }
 
-    set position(vec3) {
-        this._position = vec3;
+    set translate(vec3) {
+        this._translate = vec3;
     }
 
     set target(vec3) {
@@ -176,18 +176,18 @@ class Camera {
 
 
         this._view_matrix = glMatrix.mat4.create();
-        glMatrix.mat4.lookAt(this._view_matrix, this._position, this._target, glMatrix.vec3.fromValues(0, 0, 1));
+        glMatrix.mat4.lookAt(this._view_matrix, this._translate, this._target, glMatrix.vec3.fromValues(0, 0, 1));
     }
 };
 
 class App {
     constructor(canvas) {
+        this.on_update = (dt, t) => { };
+
         this._CANVAS = canvas;
         this._models = [];
         this._last_timestamp = 0;
         this._background_color = [0.0, 0.0, 0.0, 1.0];
-
-        this.on_update = (dt, t) => { };
 
         this._camera = new Camera();
 
@@ -198,10 +198,8 @@ class App {
     get camera() { return this._camera; }
 
     _init_canvas() {
-        this._CANVAS.width = 800; // set the canvas resolution
+        this._CANVAS.width = 800;
         this._CANVAS.height = 800;
-        this._CANVAS.style.width = "800px"; // set the display size.
-        this._CANVAS.style.height = "800px";
     }
 
     _init_gl() {
@@ -219,11 +217,6 @@ class App {
     }
 
 
-    update(dt, t) {
-        this._camera.update();
-        this.on_update(dt, t);
-        this._models.forEach(model => model.update(dt, t))
-    }
 
     render(dt, t) {
 
@@ -235,16 +228,22 @@ class App {
         this._models.forEach(model => model.render(camera.projection_matrix, camera.view_matrix))
     }
 
-    _loop(timestamp) {
+    update(dt, t) {
+        this._camera.update();
+        this.on_update(dt, t);
+        this._models.forEach(model => model.update(dt, t))
+    }
+
+    loop(timestamp) {
         var dt = (timestamp - this._last_timestamp) / 1000;
         this._last_timestamp = timestamp;
         this.update(dt, timestamp / 1000);
         this.render(dt, timestamp / 1000);
-        window.requestAnimationFrame(this._loop.bind(this));
+        window.requestAnimationFrame(this.loop.bind(this));
     }
 
     run() {
-        window.requestAnimationFrame(this._loop.bind(this));
+        window.requestAnimationFrame(this.loop.bind(this));
     }
 }
 //END EA6
