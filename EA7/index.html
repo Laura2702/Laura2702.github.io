@@ -1,0 +1,57 @@
+<!--- START EA7 --->
+<!DOCTYPE html>
+<html lang="de"
+
+<head>
+  <title>EA7 - Z-Buffer Visualisierung</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+  <link rel="stylesheet" href="css/bulma.css">
+</head>
+
+<body onload="app.start()">
+  <section class="section">
+    <h1 class="title">Graphical Visualisation Technologies - EA 7 </h1>
+    <h2 class="subtitle">Z-Buffer Visualisierung <br> Laura Pichlmeier - 70454892</h2>
+    <p class="content">Erstellen Sie eine Szene aus mindestens drei Grundkörpern die sich gegenseitig überschneiden, <br>
+      die Körper sollen also Schnittvolumen bilden. <br>
+      Stellen Sie den Tiefenbuffer (Z-Buffer), das heißt die Z-Werte der Fragments im Framebuffer, als Graustufen da. <br>
+      Die Fragments, die in Z-Richtung näher an der Kamera sind, sollen dunkler dargestellt werden. <br>
+      In der Szene soll möglichst viel Tiefe erzeugt werden, so dass der Effekt deutlich wird.</p>
+      <div class="columns">
+        <div class="column">
+          <nav class="panel is-warning">
+            <p class="panel-heading">Aufgabe 7</p>
+            <article class="message">
+              <div class="message-body">
+                Tipp: Nutze Shift + Pfeiltaste, um Scrollen der Seite zu verhindern.
+            <div class="box">
+              <canvas id="canvas"></canvas>
+            </div>
+          </nav>
+        </div>
+        <div class="column is-one-quarter">
+          <nav class="panel is-warning">
+            <p class="panel-heading">Controls</p>
+            <article class="message">
+              <div class="message-body">
+                <b>Pfeiltasten </b> = Steuerung der Kamera <br>
+                <b>U / I </b> = Kamerahöhe anpassen <br>
+                <b>R </b> = Canvas zurücksetzen
+              </div>
+            </article>
+          </nav>
+        </div>
+      </div>
+  </section>
+  <script src="js/model_sphere.js"></script>
+  <script src="js/model_torus.js"></script>
+
+  <script src="ext/gl-matrix.js"></script>
+  <script src="js/vertexshader.js"></script>
+  <script src="js/fragmentshader.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/framework.js"></script>
+  <script src="js/main.js"></script>
+</body>
+<!---END EA7 --->
