@@ -1,0 +1,67 @@
+<!--- START EA9 --->
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+    <title>EA9 - Torustextur</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Laura Pichlmeier - Ostfalia - 70454892">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/master.css">
+  </head>
+
+  <body onload="app.start()">
+    <section class="section">
+      <h1 class="title">Graphical Visualisation Technologies - EA 9</h1>
+      <h2 class="subtitle"><b>Torustextur</b> <br> Laura Pichlmeier - 70454892</h2>
+      <p class="content">Texturieren Sie einen Torus mit einer Bildtextur.<br>
+        Dazu müssen zu den Geometriedaten des Torus zunächst Texturkoordinaten hinzugefügt werden.<br>
+        <b>Interaktion:</b> Bewegung der Kamera, wie bisher, über die Pfeiltasten.<br>
+        <b>Erweiterungen:</b> Entwerfen und realisieren Sie eine prozedurale Textur für den Torus.</p>
+        <div class="columns">
+          <div class="column">
+            <nav class="panel is-warning">
+              <p class="panel-heading">Aufgabe 9 + Erweiterung</p>
+              <article class="message">
+                <div class="message-body">
+                  Tipp: Nutze Shift + Pfeiltaste, um Scrollen der Seite zu verhindern.
+                  <div class="box">
+                    <canvas id="canvas1"></canvas>
+                  </div>
+                </div>
+              </article>
+            </nav>
+          </div>
+          <div class="column is-one-quarter">
+            <nav class="panel is-warning">
+              <p class="panel-heading">Controls</p>
+              <article class="message">
+                <div class="message-body">
+                  <b>Pfeiltasten </b> = Steuerung der Kamera <br>
+                  <b>R </b> = Reset Canvas
+                </div>
+              </article>
+            </nav>
+          </div>
+        </div>
+        <canvas style="display:none" id="helper_canvas"></canvas>
+    </section>
+    <section class="section">
+      <div class="content">
+        The donut skin has been created by myself using Photoshop. <br>
+        The Perlin Noise data used for projecting the Perlin Noise skin onto the torus has been found on <a href="https://github.com/joeiddon/perlin">github</a>.
+      </div>
+    </section>
+
+    <script src="js/model_torus.js"></script>
+
+    <script src="ext/gl-matrix.js"></script>
+    <script src="ext/perlin.js"></script>
+    <script src="js/vertexshader.js"></script>
+    <script src="js/fragmentshader.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/framework.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
+<!--- END EA9 --->
